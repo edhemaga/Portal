@@ -135,7 +135,7 @@ export class ShowMessageComponent implements OnInit {
   }
   openCommentDialog(MessageId: number): void {
     let listOfComments = this.service.messages.find(
-      x => x.MessageId === MessageId
+      x => x.Id === MessageId
     ).ListOfComments;
     const dialogRef = this.dialog.open(CommentsComponent, {
       width: "800px",
@@ -149,7 +149,7 @@ export class ShowMessageComponent implements OnInit {
   }
 
   checkLikedMessages(MessageId: number): Boolean {
-    let Messages = this.service.messages.find(x => x.MessageId === MessageId);
+    let Messages = this.service.messages.find(x => x.Id === MessageId);
     let Liked = Messages.UserLikeList.find(x => x.Email === 'jovicic.djordje@outlook.com');
     if (Liked != null) {
       return true;
@@ -159,7 +159,7 @@ export class ShowMessageComponent implements OnInit {
   }
 
   openExpandDialog(MessageId: number): void {
-    let Messages = this.service.messages.find(x => x.MessageId === MessageId);
+    let Messages = this.service.messages.find(x => x.Id === MessageId);
     const dialogRef = this.dialog.open(OpenMessageComponent, {
       width: "800px",
       data: {

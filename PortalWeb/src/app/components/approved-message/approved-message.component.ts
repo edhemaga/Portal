@@ -56,14 +56,15 @@ export class ApprovedMessageComponent implements OnInit {
     );
   }
   approvedMessage(MessageId, TextMessage, Email, Group) {
-    let approved = {
+    console.log(MessageId);
+    let message = {
       MessageId,
       Email,
       TextMessage,
       Group,
-      IsApproved: this.approvedForm.value.IsApproved,
+      IsApproved: true,
     };
-    this.service.putMessageDetail(MessageId, approved).subscribe(
+    this.service.putMessageDetail(MessageId, message).subscribe(
       res => {
         this.service.refreshMessageList();
         this.toastr.success('Sadržaj je odobren');

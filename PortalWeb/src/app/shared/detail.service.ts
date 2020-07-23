@@ -58,6 +58,10 @@ export class DetailService {
     window.open(this.rootURL + "/Messages/" + id);
   }
 
+  getAllMessages(){
+    return this.http.get<any>(this.rootURL + "/Messages");
+  }
+
   postCommentDetail(fromDataComment) {
     console.log(fromDataComment)
     return this.http.post<CommentDetail[]>(
@@ -94,8 +98,8 @@ export class DetailService {
   getNotApprovedMessageCount() {
     return this.http.get(this.rootURL + "/Messages/notapprovedmessagescount");
   }
-  putMessageDetail(id, approved) {
-    return this.http.put(this.rootURL + "/Messages/update/" + id, approved);
+  putMessageDetail(id, message) {
+    return this.http.put(this.rootURL + "/Messages/update/" + id, message);
   }
 
   likeMessage(id) {
