@@ -248,7 +248,7 @@
 
         <mat-form-field class="message-full-width" appearance="standard">
           <mat-label>Datum početka radnog odnosa</mat-label>
-          <input matInput placeholder="1/7/2020" formControlName="StartOfWork" type="date" required>
+          <input matInput placeholder="1/7/2020" formControlName="StartOfWork" type="date"  required>
           <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
         </mat-form-field>
 
@@ -268,18 +268,19 @@
           <button class="btn">Uvezi sliku</button>
           <input #file formControlName="EmployeePicture" type="file" id="file"
             (change)="uploadEmployeePicture(file.files)">
+
           <div>
             <!-- *ngFor="let item of ArrayOfFiles; let index = index" -->
-            <span id="chips" *ngFor="let item of ArrayOfFiles; let index = index">
+            <span id="chips" *ngIf="selectedFile != null">
               <mat-chip-list id="chip" class="no-wrap">
-                <mat-chip><span>{{ item.name }}</span>
-                  <span id="closeIcon" (click)="remove(item)">
+                <mat-chip><span>{{ selectedFile.name }}</span>
+                  <span id="closeIcon" (click)="remove(selectedFile)">
                     <fa-icon [icon]="faWindowClose" class="fa-lg"></fa-icon>
                   </span></mat-chip>
               </mat-chip-list>
-
             </span>
           </div>
+
         </div>
 
         <div class="sendmessagebtn">

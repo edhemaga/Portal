@@ -69,8 +69,8 @@ export class AddMessageComponent implements OnInit {
 
     this.documentForm = this.formBuilder.group({
       Title: ["", Validators.required],
-      Group : ["", Validators.required],
-      Link : ["", Validators.required]
+      Group: ["", Validators.required],
+      Link: ["", Validators.required]
     });
 
     this.scheduleForm = this.formBuilder.group({
@@ -129,6 +129,7 @@ export class AddMessageComponent implements OnInit {
   uploadEmployeePicture(e) {
     if (e.length != 0) {
       this.selectedFile = e[0];
+      console.log(this.selectedFile.name);
     }
   }
 
@@ -217,7 +218,7 @@ export class AddMessageComponent implements OnInit {
       });
   }
 
-  onSubmitDocument(arg){
+  onSubmitDocument(arg) {
     console.log(arg)
     this.serviceLite.postDocument(arg).subscribe(res => {
       this.clearMessageForm();
