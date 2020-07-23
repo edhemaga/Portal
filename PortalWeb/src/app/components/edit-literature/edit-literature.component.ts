@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { LiteratureService } from 'src/app/shared/literature.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-literature',
@@ -11,9 +12,10 @@ import { LiteratureService } from 'src/app/shared/literature.service';
 export class EditLiteratureComponent implements OnInit {
   editLiteratureForm: FormGroup;
   recvData: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public LiteratureService: LiteratureService
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public toastr: ToastrService, public LiteratureService: LiteratureService
   ) {
     this.recvData = data;
+    console.log(data);
   }
   ngOnInit() {
     this.editLiteratureForm = new FormGroup({
@@ -25,7 +27,13 @@ export class EditLiteratureComponent implements OnInit {
     );
   }
 
-  editLiterature(arg){
-    console.log(arg);
+  editLiterature(id) {
+    return this.LiteratureService.updateLiterature(this.editLiteratureForm.value, id).subscribe(res => {
+      this.toastr.success("Uspješno");
+      location.reload();
+    },
+      err => {
+        this.toastr.error("Pokušajte ponovo", "Došlo je do greške");
+      });
   }
 }

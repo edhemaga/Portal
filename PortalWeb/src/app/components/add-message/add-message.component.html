@@ -125,6 +125,10 @@
           <input matInput placeholder="Link" formControlName="Link">
         </mat-form-field>
 
+        <mat-form-field class="message-full-width" appearance="standard">
+          <input matInput placeholder="Grupa" formControlName="Group">
+        </mat-form-field>
+
         <div class="upload-btn-wrapper">
           <button class="btn">Uvezi datoteke</button>
           <input #file type="file" id="file" (change)="uploadFileSave(file.files)">
@@ -246,17 +250,29 @@
           <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="message-full-width" appearance="standard">
+        <!-- <mat-form-field class="message-full-width" appearance="standard">
           <mat-label>Datum početka radnog odnosa</mat-label>
-          <input matInput placeholder="1/7/2020" formControlName="StartOfWork" type="date"  required>
+          <input matInput placeholder="1/7/2020" formControlName="StartOfWork" type="date" >
           <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
         </mat-form-field>
+ -->
+        <div>
+          <mat-form-field class="message-full-width" appearance="standard">
+            <mat-label>Datum početka radnog odnosa</mat-label>
+            <input matInput [matDatepicker]="start" formControlName="StartOfWork" required>
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+          </mat-form-field>
 
-        <mat-form-field class="message-full-width" appearance="standard">
-          <mat-label>Potencijalni kraj radnog (ostavite prazno ukoliko je ugovor na nedefinisano)</mat-label>
-          <input matInput placeholder="1/7/2020" formControlName="EndOfWork" type="date" required>
-          <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
-        </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="message-full-width" appearance="standard">
+            <mat-label>Potencijalni kraj radnog (ostavite prazno ukoliko je ugovor na nedefinisano)</mat-label>
+            <input matInput [matDatepicker]="end" formControlName="EndOfWork" required>
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+          </mat-form-field>
+        </div>
 
         <mat-form-field class="message-full-width" appearance="standard">
           <mat-label>Unesite telefon</mat-label>

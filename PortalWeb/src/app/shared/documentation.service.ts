@@ -22,6 +22,7 @@ export class DocumentationService {
   }
 
   deleteDocument2(id) {
+    console.log(id);
     return this.http.delete(this.rootURL + "/Documentation/deleteDoc/" + id);
   }
 }

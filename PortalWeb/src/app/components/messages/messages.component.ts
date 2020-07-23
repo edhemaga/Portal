@@ -21,6 +21,9 @@ import {
 import { CommentDetail } from 'src/app/shared/comment-detail.model';
 import { MessageDetail } from 'src/app/shared/message-detail.model';
 
+import { ShowMessageComponent } from 'src/app/components/show-message/show-message.component';
+import { SearchDataService } from 'src/app/shared/search-data.service';
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -57,9 +60,18 @@ export class MessagesComponent implements OnInit {
     public toastr: ToastrService,
     // public authenticationService: AuthenticationService,
     public router: Router,
-    private formBuilder: FormBuilder
+    public showMsg: ShowMessageComponent,
+    private formBuilder: FormBuilder,
+    public shareData: SearchDataService,
   ) { }
+
+
+  firstComponentFunction(){    
+    this.shareData.onFirstComponentButtonClick();
+  } 
+
   ngOnInit() {
+
 
     if (window.screen.width <= 600) {
       this.mobile = true;
@@ -88,6 +100,22 @@ export class MessagesComponent implements OnInit {
     this.restoreForm = this.formBuilder.group({
       IsDeleted: "false"
     });
+
+  }
+
+  search(searchValue) {
+    var tempMsgs = [];
+ 
+    console.log(searchValue);
+
+    for (let msg of this.messages) {
+      if (msg.TextMessage.includes(searchValue.trim())) {
+        tempMsgs.push(msg);
+      }
+    }
+    this.messages = [];
+    this.messages = tempMsgs;
+    
   }
 
   downloadFile(id) {

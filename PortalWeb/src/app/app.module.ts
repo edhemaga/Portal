@@ -15,8 +15,12 @@ import {
   MatBadgeModule,
   MatSelectModule,
   MatOptionModule,
-  MatListModule
+  MatListModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from "@angular/material";
+
+
 import { DetailService } from "./shared/detail.service";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -84,9 +88,11 @@ import { EditNewsComponent } from './components/edit-news/edit-news.component';
     MatDialogModule,
     MatToolbarModule,
     MatTabsModule,
+    MatNativeDateModule,
     HttpClientModule,
     ReactiveFormsModule,
     MatListModule,
+    MatDatepickerModule,
     FormsModule,
     MatSelectModule,
     MatOptionModule,
@@ -123,7 +129,7 @@ import { EditNewsComponent } from './components/edit-news/edit-news.component';
     EditNewsComponent
   ],
   providers: [
-    DetailService,
+    DetailService, MatDatepickerModule,
     // AuthenticationGuard,
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],

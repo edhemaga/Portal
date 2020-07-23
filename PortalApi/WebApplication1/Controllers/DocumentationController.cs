@@ -43,9 +43,28 @@ namespace WebApplication1.Controllers
 
         // POST: api/Documentation/sendDocumentation
         [HttpPost("sendDocumentation")]
-        public void PostDocumentation(Documentation documentation)
+        public void PostDocumentation([FromForm] Documentation documentation)
         {
             _service.addDocumentation(documentation);
+        }
+
+        //PUT : api/Documentation/UpdateDoc
+        [HttpPut("UpdateDoc/{id}")]
+        public IActionResult UpdateDocument(Guid id, Documentation documentation)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid objeect sent from client");
+                }
+                _service.UpdateDoc(documentation, id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error {ex.Message}");
+            }
         }
 
         //DELETE: api/Documentation/deleteDoc

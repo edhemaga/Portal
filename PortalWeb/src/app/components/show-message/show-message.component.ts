@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { AddMessageComponent } from "../add-message/add-message.component";
 import { DetailService } from "../../shared/detail.service";
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 import { ApprovedMessageComponent } from "../approved-message/approved-message.component";
 import { FormBuilder } from "@angular/forms";
 import { first } from "rxjs/operators";
-import { MessagesComponent } from '../messages/messages.component'
+import { SearchDataService} from 'src/app/shared/search-data.service';
 import {
   faTrash,
   faComment,
@@ -32,7 +32,6 @@ import {
   faInbox
 } from "node_modules/@fortawesome/free-solid-svg-icons";
 import { OpenMessageComponent } from "../open-message/open-message.component";
-
 
 @Component({
   selector: "app-show-message",
@@ -70,15 +69,17 @@ export class ShowMessageComponent implements OnInit {
   countlikes: number = 0;
   isLikedByUser: boolean;
   public toggleSidebar: boolean = true;
-
+  
   constructor(
     public dialog: MatDialog,
     public service: DetailService,
+    public shareData: SearchDataService,
     public toastr: ToastrService,
     // public authenticationService: AuthenticationService,
     public router: Router,
     private formBuilder: FormBuilder
   ) { }
+
   ngOnInit() {
 
     if (window.screen.width <= 660) {
@@ -109,10 +110,6 @@ export class ShowMessageComponent implements OnInit {
     });
   }
 
-  searchMessages(input){
-    
-  }
-
   public toggleMenu() {
     if (this.toggleSidebar == true) {
       this.toggleSidebar = false;
@@ -121,6 +118,10 @@ export class ShowMessageComponent implements OnInit {
       this.toggleSidebar = true;
     }
 
+  }
+
+  searchMsgs(arg){
+    this.shareData.searchData = arg;
   }
 
   downloadFile(id) {

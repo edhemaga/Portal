@@ -21,7 +21,7 @@ export class NewsService {
   }
 
   editNews(news: News, id){
-    return this.http.put(this.rootURL + "/News/" + id, news);
+    return this.http.put(this.rootURL + "/News/UpdateNews/" + id, news);
   }
 
   deleteNews(id){

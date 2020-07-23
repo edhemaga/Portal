@@ -8,11 +8,11 @@
       <img src="assets\images\mibologo.png" alt="Logo">
     </span>
     <span id="searchField">
-      <form>
-        <div id="searchFieldIcon">
+      <form >
+        <div (click)="searchMsgs(inputSearch.value)" id="searchFieldIcon">
           <fa-icon [icon]="faSearch" class="centerAll darkGrayText"></fa-icon>
         </div>
-        <input class="pointer" placeholder="Pretažite poruke" type="search" (change)="searchMessages($event)" autocomplete="off">
+        <input class="pointer" placeholder="Pretažite poruke" #inputSearch type="search" autocomplete="off">
       </form>
     </span>
     <span class="pointer">
@@ -44,10 +44,10 @@
         <fa-icon [icon]="faUserFriends"></fa-icon> Zaposlenici
       </li>
       <li routerLink="/Literature">
-        <fa-icon [icon]="faFileAlt"></fa-icon> Pravilnici
+        <fa-icon [icon]="faFileAlt"></fa-icon> Korisna literatura
       </li>
       <li routerLink="/Documentation">
-        <fa-icon [icon]="faBook"></fa-icon> Korisna literatura
+        <fa-icon [icon]="faBook"></fa-icon> Pravilnici
       </li>
       <li routerLink="/News">
         <fa-icon [icon]="faNewspaper"></fa-icon> Novosti

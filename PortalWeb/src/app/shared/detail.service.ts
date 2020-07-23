@@ -58,7 +58,7 @@ export class DetailService {
     window.open(this.rootURL + "/Messages/" + id);
   }
 
-  getAllMessages(){
+  getAllMessages() {
     return this.http.get<any>(this.rootURL + "/Messages");
   }
 

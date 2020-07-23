@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from "@angular/core";
-import { MatDialogRef } from "@angular/material";
+import { MatDialogRef, DateAdapter } from "@angular/material";
 import { NgForm, FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { DetailService } from "../../shared/detail.service";
 import { LiteratureService } from "../../shared/literature.service";
@@ -43,11 +43,12 @@ export class AddMessageComponent implements OnInit {
     public serviceSch: ScheduleService,
     public toastr: ToastrService,
     private formBuilder: FormBuilder,
+    private _adapter: DateAdapter<any>
   ) { }
 
   ngOnInit() {
     this.resetForm();
-
+    this._adapter.setLocale('fr');
     this.messageForm = this.formBuilder.group({
       TextMessage: ["", Validators.required],
       Group: ["", Validators.required],
@@ -81,6 +82,7 @@ export class AddMessageComponent implements OnInit {
     this.literatureForm = this.formBuilder.group({
       Title: ["", Validators.required],
       Link: ["", Validators.required],
+      Group: ["", Validators.required],
       AttachmentIds: [],
     });
     this.newsForm = this.formBuilder.group({
@@ -199,6 +201,7 @@ export class AddMessageComponent implements OnInit {
       this.resetForm();
       this.service.refreshMessageList();
       this.closeClick();
+      location.reload();
     },
       err => {
         this.toastr.error("Pokušajte ponovo", "Došlo je do greške");
@@ -219,7 +222,6 @@ export class AddMessageComponent implements OnInit {
   }
 
   onSubmitDocument(arg) {
-    console.log(arg)
     this.serviceLite.postDocument(arg).subscribe(res => {
       this.clearMessageForm();
       this.toastr.success("Uspješno");

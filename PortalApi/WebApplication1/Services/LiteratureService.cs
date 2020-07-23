@@ -83,7 +83,8 @@ namespace WebApplication1.Services
                 IsApproved = false,
                 IsDeleted = false,
                 Title = literatueRequest.Title,
-                Link = literatueRequest.Link
+                Link = literatueRequest.Link,
+                Group = literatueRequest.Group,
                
             };
             repository.Insert(literature);
@@ -123,6 +124,18 @@ namespace WebApplication1.Services
                 contentType = "application/octet-stream";
             }
             return contentType;
+        }
+
+        public void UpdateLiterature(Literature l, Guid id)
+        {
+            var literature = repository.GetById(id);
+
+            literature.Group = l.Group;
+            literature.Link = l.Link;
+            literature.Title = l.Title;
+            literature.Files = l.Files;
+
+            repository.Update(literature);
         }
     }
 }
