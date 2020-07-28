@@ -65,11 +65,6 @@ export class MessagesComponent implements OnInit {
     public shareData: SearchDataService,
   ) { }
 
-
-  firstComponentFunction(){    
-    this.shareData.onFirstComponentButtonClick();
-  } 
-
   ngOnInit() {
 
 
@@ -113,9 +108,6 @@ export class MessagesComponent implements OnInit {
         tempMsgs.push(msg);
       }
     }
-    this.messages = [];
-    this.messages = tempMsgs;
-    
   }
 
   downloadFile(id) {
