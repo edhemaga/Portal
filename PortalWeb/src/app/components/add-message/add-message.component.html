@@ -162,7 +162,10 @@
         </mat-form-field>
 
         <mat-form-field class="message-full-width" appearance="standard">
-          <input matInput placeholder="Datum" type="date" formControlName="DateOfEvent">
+          <mat-label>Unesite datum događaja</mat-label>
+          <input matInput [matDatepicker]="start" formControlName="DateOfEvent" required>
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
         </mat-form-field>
       </mat-card>
 
@@ -249,13 +252,6 @@
           <input matInput placeholder="Pozicija" formControlName="Department" required>
           <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
         </mat-form-field>
-
-        <!-- <mat-form-field class="message-full-width" appearance="standard">
-          <mat-label>Datum početka radnog odnosa</mat-label>
-          <input matInput placeholder="1/7/2020" formControlName="StartOfWork" type="date" >
-          <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
-        </mat-form-field>
- -->
         <div>
           <mat-form-field class="message-full-width" appearance="standard">
             <mat-label>Datum početka radnog odnosa</mat-label>
@@ -263,7 +259,6 @@
             <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
             <mat-datepicker #start></mat-datepicker>
           </mat-form-field>
-
         </div>
         <div>
           <mat-form-field class="message-full-width" appearance="standard">

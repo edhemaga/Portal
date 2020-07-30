@@ -44,8 +44,9 @@ namespace WebApplication1.Controllers
 
         // POST: api/Employee/AddEmployee
         [HttpPost("AddEmployee")]
-        public ActionResult AddEmployee(EmployeeRequest employee)
+        public ActionResult AddEmployee([FromForm] EmployeeRequest employee)
         {
+    
             _service.PostEmployee(employee);
 
             return Ok();

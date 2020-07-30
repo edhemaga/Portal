@@ -7,7 +7,6 @@ import { NewsService } from "../../shared/news.service";
 
 import { ScheduleService } from '../../shared/schedule.service';
 import { ToastrService } from "ngx-toastr";
-import { HttpEventType, HttpClient } from "@angular/common/http";
 
 import { faWindowClose } from "node_modules/@fortawesome/free-solid-svg-icons";
 import { EmployeeService } from '../../shared/employee.service';

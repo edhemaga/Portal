@@ -37,8 +37,8 @@ export class EmployeeService {
     formData.append("Telephone", fromDataUser.Telephone);
     formData.append("Position", fromDataUser.Position);
     formData.append("Department", fromDataUser.Department);
-    // formData.append("StartOfWork", fromDataUser.StartOfWork.toString());
-    // formData.append("EndOfWork", fromDataUser.EndOfWork.toString());
+    formData.append("StartOfWork", fromDataUser.StartOfWork.toUTCString());
+    formData.append("EndOfWork", fromDataUser.EndOfWork.toUTCString());
 
     return this.http.post(this.rootURL + "/Employee/AddEmployee", formData);
   }

@@ -75,7 +75,7 @@ namespace WebApplication1.Services
                 Telephone = employeeRequest.Telephone,
                 Department = employeeRequest.Department,
                 Position = employeeRequest.Position,
-                StartOfWork = employeeRequest.StartOfWork,
+                StartOfWork = Convert.ToDateTime(employeeRequest.StartOfWork),
                 ExtensionNumber = employeeRequest.ExtensionNumber
             };
             employeeRepository.Insert(employee);

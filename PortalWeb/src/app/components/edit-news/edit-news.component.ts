@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NewsService } from 'src/app/shared/news.service';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditNewsComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private newsSer: NewsService, public toastr: ToastrService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder,
+  private _adapter: DateAdapter<any>,
+
+  private newsSer: NewsService, public toastr: ToastrService) { }
 
   newsForm: FormGroup;
 

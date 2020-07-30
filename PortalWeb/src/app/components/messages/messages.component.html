@@ -15,7 +15,7 @@
             </p>
           </mat-card>
         </div>
-        <p>{{ message.CurrentDate | date: "HH:mm   dd.MM.yyyy." }}</p>
+        <p>Objavljeno: {{ message.CurrentDate | date: "HH:mm dd.MM.yyyy." }}</p>
         <div>
           <span id="chips" *ngFor="let att of message.Attachments">
             <mat-chip-list id="chip" class="no-wrap">
