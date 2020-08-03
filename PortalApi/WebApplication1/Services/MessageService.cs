@@ -180,6 +180,7 @@ namespace WebApplication1.Services
 
             messageNew.TextMessage = message.TextMessage;
             messageNew.Attachments = message.Attachments;
+            messageNew.IsApproved = message.IsApproved;
 
             messageRepository.Update(messageNew);
         }

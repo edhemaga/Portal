@@ -36,6 +36,18 @@ export class ApprovedMessageComponent implements OnInit {
     this.dialogRef.close();
     this.service.refreshMessageList();
    }
+
+   onHardDelete(id){
+     this.service.hardDelete(id).subscribe(res => {
+      this.toastr.success("Uspješno");
+      this.closeClick();
+      location.reload();
+    },
+      err => {
+        this.toastr.error("Pokušajte ponovo", "Došlo je do greške");
+      });
+   }
+
   onDelete(MessageId, TextMessage, Email, Group) {
     let deleted = {
       MessageId,
@@ -47,6 +59,7 @@ export class ApprovedMessageComponent implements OnInit {
     this.service.putMessageDetail(MessageId, deleted).subscribe(
       res => {
         this.service.refreshMessageList();
+        location.reload();
         this.toastr.warning('Sadržaj nije odobren');
 
       },
@@ -66,8 +79,8 @@ export class ApprovedMessageComponent implements OnInit {
     this.service.putMessageDetail(Id, message).subscribe(
       res => {
         this.service.refreshMessageList();
+        location.reload();
         this.toastr.success('Sadržaj je odobren');
-
       },
       err => {
         this.toastr.error('Pokušajte ponovo', 'Došlo je do greške', );

@@ -169,6 +169,7 @@ export class MessagesComponent implements OnInit {
       res => {
         this.service.refreshMessageList();
         this.service.getNotApprovedMessageCount();
+        location.reload();
         this.toastr.warning("Sadržaj nije odobren");
       },
       err => {

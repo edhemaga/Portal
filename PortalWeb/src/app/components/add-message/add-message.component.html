@@ -43,12 +43,12 @@
       <mat-form-field class="selectedgroup">
         <mat-label>Izaberite grupu</mat-label>
         <mat-select name="Group" matSelect formControlName="Group" required>
-          <mat-option value="uposlenici">Zaposlenici</mat-option>
+          <mat-option *ngIf="getEmail == 'muhamed.skikic@mibo.ba'" value="uposlenici">Zaposlenici</mat-option>
           <mat-option value="prijedlozi">Razmjena prijedloga dobre prakse</mat-option>
-          <mat-option value="dokumentacija">Pravilnici</mat-option>
-          <mat-option value="literatura">Literatura</mat-option>
-          <mat-option value="novosti">Novosti</mat-option>
-          <mat-option value="raspored">Plan i raspored sale</mat-option>
+          <mat-option *ngIf="getEmail == 'muhamed.skikic@mibo.ba'" value="dokumentacija">Pravilnici</mat-option>
+          <mat-option *ngIf="getEmail == 'muhamed.skikic@mibo.ba'" value="literatura">Literatura</mat-option>
+          <mat-option *ngIf="getEmail == 'muhamed.skikic@mibo.ba'" value="novosti">Novosti</mat-option>
+          <mat-option *ngIf="getEmail == 'muhamed.skikic@mibo.ba'" value="raspored">Plan i raspored sale</mat-option>
           <!-- <mat-option *ngIf="getEmail == 'muhamed.skikic@mibo.ba'" value="dokumentacija">Dokumentacija/Pravilnik firme</mat-option> -->
         </mat-select>
         <mat-error *ngIf="messageForm.invalid">*Polje je obavezno</mat-error>
@@ -163,9 +163,9 @@
 
         <mat-form-field class="message-full-width" appearance="standard">
           <mat-label>Unesite datum događaja</mat-label>
-          <input matInput [matDatepicker]="start" formControlName="DateOfEvent" required>
+          <input matInput [matDatepicker]="start" formControlName="DateOfEvent" required disabled>
           <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-          <mat-datepicker #start></mat-datepicker>
+          <mat-datepicker #start disabled="false"></mat-datepicker>
         </mat-form-field>
       </mat-card>
 
@@ -255,19 +255,19 @@
         <div>
           <mat-form-field class="message-full-width" appearance="standard">
             <mat-label>Datum početka radnog odnosa</mat-label>
-            <input matInput [matDatepicker]="start" formControlName="StartOfWork" required>
+            <input matInput [matDatepicker]="start" formControlName="StartOfWork" required disabled>
             <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-            <mat-datepicker #start></mat-datepicker>
+            <mat-datepicker #start disabled="false"></mat-datepicker>
           </mat-form-field>
         </div>
-        <div>
+        <!-- <div>
           <mat-form-field class="message-full-width" appearance="standard">
             <mat-label>Potencijalni kraj radnog (ostavite prazno ukoliko je ugovor na nedefinisano)</mat-label>
-            <input matInput [matDatepicker]="end" formControlName="EndOfWork" required>
+            <input matInput [matDatepicker]="end" formControlName="EndOfWork" required disabled>
             <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-            <mat-datepicker #end></mat-datepicker>
+            <mat-datepicker #end disabled="false"></mat-datepicker>
           </mat-form-field>
-        </div>
+        </div> -->
 
         <mat-form-field class="message-full-width" appearance="standard">
           <mat-label>Unesite telefon</mat-label>

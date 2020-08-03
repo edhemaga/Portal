@@ -4,9 +4,8 @@ import { AddMessageComponent } from "../add-message/add-message.component";
 import { DetailService } from "../../shared/detail.service";
 import { ToastrService } from "ngx-toastr";
 import { CommentsComponent } from "../comments/comments.component";
-// import { AuthenticationService } from "../_service/authentication.service";
 import { Router } from "@angular/router";
-// import * as jwt_decode from "jwt-decode";
+import * as jwt_decode from "jwt-decode";
 import { ApprovedMessageComponent } from "../approved-message/approved-message.component";
 import { FormBuilder } from "@angular/forms";
 import { first } from "rxjs/operators";
@@ -34,6 +33,7 @@ import {
 import { OpenMessageComponent } from "../open-message/open-message.component";
 import { MessageDetail } from 'src/app/shared/message-detail.model';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { AuthenticationService } from 'src/app/utilities/_service/authentication.service';
 
 @Component({
   selector: "app-show-message",
@@ -82,7 +82,7 @@ export class ShowMessageComponent implements OnInit {
     public service: DetailService,
     public shareData: SearchDataService,
     public toastr: ToastrService,
-    // public authenticationService: AuthenticationService,
+    public authenticationService: AuthenticationService,
     public router: Router,
     private formBuilder: FormBuilder
   ) { }
@@ -104,12 +104,11 @@ export class ShowMessageComponent implements OnInit {
     this.service.getDocuments();
     this.service.getAllMessages().subscribe(data => { this.messages = data as MessageDetail[] });
 
-    // let getToken = localStorage.getItem("adal.idtoken");
-    // let decode = jwt_decode(getToken);
-    // let upn = decode.email; //upn za produkcijsku verziju
-    // this.getEmail = upn;
-    // localStorage.setItem("upn", upn);
-    this.getEmail = "muhamed.skikic@mibo.ba";
+    let getToken = localStorage.getItem("adal.idtoken");
+    let decode = jwt_decode(getToken);
+    let upn = decode.email; //upn za produkcijsku verziju
+    this.getEmail = upn;
+    localStorage.setItem("upn", upn);
 
     this.deleteForm = this.formBuilder.group({
       IsDeleted: "true"
@@ -256,7 +255,7 @@ export class ShowMessageComponent implements OnInit {
     );
   }
   logout() {
-    // this.authenticationService.logout();
+    this.authenticationService.logout();
   }
 
   toggleSearchBar() {

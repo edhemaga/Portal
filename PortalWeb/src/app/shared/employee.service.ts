@@ -33,7 +33,7 @@ export class EmployeeService {
 
     formData.append("FirstName", fromDataUser.Firstname);
     formData.append("LastName", fromDataUser.Lastname);
-    formData.append("Email", fromDataUser.Email);
+    formData.append("Email", fromDataUser.EmailEmployee);
     formData.append("Telephone", fromDataUser.Telephone);
     formData.append("Position", fromDataUser.Position);
     formData.append("Department", fromDataUser.Department);

@@ -78,7 +78,7 @@ namespace WebApplication1.Controllers
         }
 
         // DELETE: api/Messages/deleteMessage/5
-        [HttpDelete("deleteMessage")]
+        [HttpDelete("deleteMessage/{id}")]
         public async Task<ActionResult<Message>> DeleteMessage(Guid id)
         {
             service.DeleteMessage(id);

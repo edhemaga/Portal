@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication1.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -100,22 +100,21 @@ namespace WebApplication1.Migrations
                 name: "Comment",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
                     CommentId = table.Column<Guid>(nullable: false),
                     TextComment = table.Column<string>(nullable: true),
                     CurrentDateTime = table.Column<DateTime>(nullable: false),
                     Email = table.Column<string>(nullable: true),
-                    MessageId = table.Column<Guid>(nullable: true)
+                    MessageId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
+                    table.PrimaryKey("PK_Comment", x => x.CommentId);
                     table.ForeignKey(
                         name: "FK_Comment_Message_MessageId",
                         column: x => x.MessageId,
                         principalTable: "Message",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,8 +148,8 @@ namespace WebApplication1.Migrations
                     Position = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Telephone = table.Column<string>(nullable: true),
+                    ExtensionNumber = table.Column<string>(nullable: true),
                     StartOfWork = table.Column<DateTime>(nullable: false),
-                    EndOfWork = table.Column<DateTime>(nullable: false),
                     EmployeePictureAttachmentId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

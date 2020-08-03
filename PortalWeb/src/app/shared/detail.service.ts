@@ -58,6 +58,8 @@ export class DetailService {
     window.open(this.rootURL + "/Messages/" + id);
   }
 
+
+
   getAllMessages() {
     return this.http.get<any>(this.rootURL + "/Messages");
   }
@@ -84,6 +86,11 @@ export class DetailService {
   deleteMessageDetail(id) {
     return this.http.delete(this.rootURL + "/Messages/" + id);
   }
+
+  hardDelete(id) {
+    return this.http.delete(this.rootURL + "/Messages/deleteMessage/" + id);
+  }
+
   refreshMessageList() {
     return this.http
       .get<any>(this.rootURL + "/Messages")
